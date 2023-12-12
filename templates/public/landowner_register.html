@@ -1,0 +1,120 @@
+{% extends 'public/menu.html' %}
+{% block content %}
+
+<div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Authentication card start -->
+                    <div class="signup-card card-block auth-body mr-auto ml-auto">
+                        <form class="md-float-material" method="post" action="" id="form" enctype="multipart/form-data">
+                            <div class="text-center">
+                                <img src="{{url_for('static',filename='assets/images/auth/logo-dark.png')}}" alt="logo.png">
+                            </div>
+                            <div class="auth-box">
+                                <div class="row m-b-20">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center txt-primary">Register Your Land Here</h3>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <label for="name">Full Name</label>
+                                <div class="input-group">
+                                    <input type="text" name="name" value="{{data['name']}}" class="form-control" required placeholder="Full Name">
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="address">Address</label>
+                                <div class="input-group">
+                                    <textarea name="address" cols="30" rows="5" required placeholder="Address"  class="form-control">{{data['address']}}</textarea>
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="ward">Ward Number</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="{{data['ward']}}" placeholder="Ward Number" required name="ward">
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="gender">Gender</label>
+                                <div class="input-group">
+                                    <input type="radio" value="male" checked name="gender">Male
+                                    <input type="radio" value="female" {% if data['gender'] == 'female' %} checked {% endif %} name="gender" class="ml-5">Female
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="dob">Date Of Birth</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" value="{{data['dob']}}" id="dob" required name="dob">
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="phone">Phone Number</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="{{data['phone']}}" placeholder="Phone Number" required name="phone" pattern="[0-9]{10}">
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="email">Email Address</label>
+                                <div class="input-group">
+                                    <input type="email" class="form-control" value="{{data['email']}}" placeholder="Email Address" required name="email">
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="photo">Profile Image</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" required name="photo">
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="land">Land File</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" required name="land">
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="pword">Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" required name="pword" placeholder="Choose Password">
+                                    <span class="md-line"></span>
+                                </div>
+                                <label for="cpword">Confirm Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" required name="cpword" placeholder="Confirm Password">
+                                    <span class="md-line"></span>
+                                </div>
+                                <div class="row m-t-25 text-left">
+                                    <div class="col-md-12">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" required value="">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span class="text-inverse">I read and accept <a href="#">Terms &amp; Conditions.</a></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row alert-danger m-2">
+                                    {% with msg = get_flashed_messages() %}
+                                    {% if msg %}
+                                    {{msg[0]}}
+                                    {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now.</button>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
+                                        <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="{{url_for('static',filename='assets/images/auth/Logo-small-bottom.png')}}" alt="small-logo.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- end of form -->
+                    </div>
+                    <!-- Authentication card end -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+
+{% endblock  %}

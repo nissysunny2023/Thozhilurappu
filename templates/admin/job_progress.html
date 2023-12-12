@@ -1,0 +1,30 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<div class="container" id="main_div">
+    {% if progress %}
+    {% for p in progress %}
+    <div class="shadow p-3 bg-secondary text-light rounded mt-3">
+        <div class="row form-group">
+            <div class="col-md-12">
+                Date : {{p[3]}}
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-4">
+                <img src="/static/uploads/updates/{{p[4]}}" width="100%" alt="progress image">
+            </div>
+            <div class="col-md-8">
+                <p>
+                    {{p[2]}}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3 class="text-center text-danger">No Progress To Show</h3>
+    {% endif %}
+</div>
+
+{% endblock %}

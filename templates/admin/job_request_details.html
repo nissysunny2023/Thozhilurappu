@@ -1,0 +1,177 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+
+<div class="card-block bg-light shadow">
+    <div class="row">
+        <div class="col-lg-12 col-xl-12">
+            <div class="row">
+                <div class="col sub-title">Details</div>
+                <div class="col text-right">
+                    {% if data[24] == 1 %}
+                    <button class="btn btn-success"
+                        onclick="location.href='/admin/jobs/progress/{{data[0]}}/'">Progress</button>
+                    {% endif %}
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <ul class="nav nav-tabs  tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#job" role="tab">Job Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#mate" role="tab">Mate Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#land" role="tab">Land Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#employee" role="tab">Employee List</a>
+                </li>
+            </ul>
+            <div class="tab-content tabs card-block">
+                <div class="tab-pane active" id="job" role="tabpanel">
+                    <h4 class="text-center">{{data[5]}}</h4>
+                    <p>
+                        {{data[6]}}
+                    </p>
+                    <div class="row form-group mt-5">
+                        <div class="col-md-2">Location</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[7]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Ward</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[8]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Employee Type</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">
+                            {% if data[9] == 1 %}
+                            All
+                            {% elif data[9] == 2 %}
+                            Below 60 and Without Fever or Health Problems
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Total Employees</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[10]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Requested Date</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[1]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Approved Date</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[2]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Start Date</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[3]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Payment</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[4]}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="mate" role="tabpanel">
+                    <div class="row form-group">
+                        <div class="col-md-2">
+                            <img src="/static/uploads/profile_pic/{{data[16]}}" width="100%" alt="">
+                            <br><br>
+                            <h5 class="text-center">{{data[11]}}</h5>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Address</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[12]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Phone</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[13]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Gender</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[14]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Date Of Birth</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[15]}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="land" role="tabpanel">
+                    <div class="row form-group">
+                        <div class="col-md-2">
+                            <img src="/static/uploads/profile_pic/{{data[23]}}" width="100%" alt="">
+                            <br><br>
+                            <h5 class="text-center">{{data[17]}}</h5>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Address</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[18]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Ward</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[19]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Phone</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[20]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Gender</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[21]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Date Of Birth</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[22]}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="employee" role="tabpanel">
+                    {% if employees %}
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <th>Emp.ID</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                        </thead>
+                        <tbody>
+                            {% for e in employees %}
+                            <tr>
+                                <td>{{e[0]}}</td>
+                                <td>{{e[1]}}</td>
+                                <td>{{e[2]}}</td>
+                                <td>{{e[3]}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <h3 class="text-danger text-center">No Employees Recruited</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

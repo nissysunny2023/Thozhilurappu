@@ -1,0 +1,94 @@
+{% extends 'template.html' %}
+{% block menu %}
+
+<div class="">
+    <div class="main-menu-header">
+        <img class="img-40 img-radius" id="menu_user_image" src="" alt="User-Profile-Image">
+        <div class="user-details">
+            <span id="menu_user_name"></span>
+            <span id="more-details"><span id="menu_user_role"></span><i class="ti-angle-down"></i></span>
+        </div>
+    </div>
+
+    <div class="main-menu-content">
+        <ul>
+            <li class="more-details">
+                <a href="/landowner/profile/"><i class="ti-user"></i>Profile</a>
+                <a href="/landowner/changePassword/"><i class="ti-lock"></i>Change Password</a>
+                <a href="/logout"><i class="ti-layout-sidebar-left"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Dashboard</div>
+<ul class="pcoded-item pcoded-left-item">
+    <li class="active">
+        <a href="/landowner/home">
+            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+            <span class="pcoded-mtext" data-i18n="nav.dash.main">Home</span>
+            <span class="pcoded-mcaret"></span>
+        </a>
+    </li>
+</ul>
+<div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Jobs</div>
+<ul class="pcoded-item pcoded-left-item">
+    <li class="active">
+        <a href="/landowner/job/browse/">
+            <span class="pcoded-micon"><i class="ti-view-list-alt"></i><b>D</b></span>
+            <span class="pcoded-mtext" data-i18n="nav.dash.main">Find Job</span>
+            <span class="pcoded-mcaret"></span>
+        </a>
+    </li>
+    <li class="pcoded-hasmenu">
+        <a href="javascript:void(0)">
+            <span class="pcoded-micon"><i class="ti-receipt"></i></span>
+            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">My Lands</span>
+            <span class="pcoded-mcaret"></span>
+        </a>
+        <ul class="pcoded-submenu">
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Job Requests</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class=" ">
+                        <a href="/landowner/land//pending/">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Pending</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="/landowner/land/approved/">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Approved</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="/landowner/land/rejected/">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Rejected</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class=" ">
+                <a href="/landowner/land/completed/">
+                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Completed Jobs</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

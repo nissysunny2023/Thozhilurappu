@@ -1,0 +1,25 @@
+{% extends 'mate/menu.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% if data %}
+        {% for d in data %}
+        <div class="col-md-12 bg-light shadow m-2 border rounded p-3 card">
+            <div class="row">
+                <div class="col-md-12">
+                    {{d[2]}}
+                </div>
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-sm btn-danger" onclick="location.href='/mate/report/reject/{{d[0]}}/{{d[1]}}/'">Reject</button>
+                    <button class="btn btn-sm btn-success" onclick="location.href='/mate/report/accept/{{d[0]}}/{{d[1]}}/'">Accept</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2 class="text-danger text-center">No Reports to Show</h2>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

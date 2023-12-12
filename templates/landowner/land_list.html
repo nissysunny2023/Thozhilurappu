@@ -1,0 +1,41 @@
+{% extends 'landowner/menu.html' %}
+{% block content %}
+
+<div class="container">
+    {% if lands %}
+    <table class="table table-hover table-striped">
+        <thead>
+            <th>Sl.No</th>
+            <th>Job Title</th>
+            <th>Address</th>
+            <th>Ward</th>
+            {% if st == 1 or st == 0 %}
+            <th>Manage</th>
+            {% endif %}
+        </thead>
+        <tbody>
+            {% for l in lands %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{l[8]}}</td>
+                <td>{{l[3]}}</td>
+                <td>{{l[4]}}</td>
+                <td>
+                {% if st == 0 %}
+                <button class="btn btn-sm btn-danger" onclick="location.href='/landowner/job/cancel/{{l[0]}}/'">Cancel</button>
+                {% elif st == 1 %}
+                <button class="btn btn-sm btn-primary" onclick="location.href='/landowner/job/progress/{{l[0]}}/'">Progress</button>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="text-center text-danger">Nothing To Show!!</h2>
+    {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+{% endblock %}

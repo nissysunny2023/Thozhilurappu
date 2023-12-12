@@ -1,0 +1,27 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<style>
+    .center-div{
+        margin: auto;
+        width: fit-content;
+    }
+</style>
+
+<div class="container">
+    <div class="center-div">
+        <form action="charge" method="POST">
+            <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="<APP_ID>"
+                data-amount="{{amount}}" data-name="Daft Punk" data-description="Purchase Description" data-image="vk.jpg"
+                data-netbanking="true" data-description="Tron Legacy" data-prefill.name="Abdul Junaid"
+                data-prefill.email="junaididavazhikkal@gmail.com" data-prefill.contact="9656562550"
+                data-notes.shopping_order_id="{{pid}}">
+                </script>
+            <input type="hidden" name="amount" value="{{amount}}">
+            <input type="hidden" name="pid" value="{{pid}}">
+            <input type="hidden" name="jm_id" value="{{jm_id}}">
+            <input type="hidden" name="shopping_order_id" value="{{pid}}">
+        </form>
+    </div>
+</div>
+{% endblock %}

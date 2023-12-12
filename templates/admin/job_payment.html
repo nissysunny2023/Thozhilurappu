@@ -1,0 +1,38 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            Total Attendance : <span id="total_att"></span>
+        </div>
+        <hr>
+        <div class="col-md-12">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Sl.No</th>
+                        <th>Employee</th>
+                        <th>Attendance</th>
+                        <th>Payment</th>
+                    </tr>
+                </thead>
+                <tbody id="tb"></tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Total</th>
+                        <th id="total"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right" id="payment_btn">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/attendancePayment.js')}}"></script>
+{% endblock %}

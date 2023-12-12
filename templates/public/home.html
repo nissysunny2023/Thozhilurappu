@@ -1,0 +1,48 @@
+{% extends 'public/menu.html' %}
+{% block content %}
+
+<div class="page-header card">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <i class="icofont icofont icofont icofont-file-document bg-c-pink"></i>
+                <div class="d-inline">
+                    <h4>Notifications</h4>
+                    <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page-header end -->
+
+<div class="page-body">
+        <div class="row">
+            {% for n in notifications %}
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>{{n[1]}}</h5>
+                        <span>{{n[3]}}</span>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option" style="width: 35px;">
+                                <li class=""><i class="icofont icofont-simple-left"></i></li>
+                                <li><i class="icofont icofont-maximize full-card"></i></li>
+                                <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                <li><i class="icofont icofont-error close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <p>
+                            {{n[2]}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'mate/menu.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/pages/notification/notification.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/css/animate.css/css/animate.css')}}">
+<div class="container" id="main_div">
+    {% if requests %}
+    <table class="table table-hover table-striped">
+        <thead>
+            <th>Sl.No</th>
+            <th>Employee Name</th>
+            <th>Request Date</th>
+            <th>Job Title</th>
+            <th>Phone</th>
+            <th>Details</th>
+        </thead>
+        <tbody>
+            {% for r in requests %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{r[3]}}</td>
+                <td>{{r[1]}}</td>
+                <td>{{r[2]}}</td>
+                <td>{{r[4]}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" onclick="location.href='/mate/employee/details/{{r[0]}}/'">Details</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="text-center text-danger">Nothing To Show!!</h2>
+    {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+{% endblock %}

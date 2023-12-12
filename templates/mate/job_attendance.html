@@ -1,0 +1,73 @@
+{% extends 'mate/menu.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col">
+            <button class="btn btn-success" onclick="showHideAtt()"><i class="ti-plus"></i>Add Attendance</button>
+        </div>
+    </div>
+    <div id="main_div">
+        <div class="row form-group">
+            <div class="col-md-6"></div>
+            <div class="col-md-4">
+                <label for="date">Select Date</label>
+                <input type="date" id="date" onchange="getAttendance(this.value)" class="form-control">
+            </div>
+        </div>
+        <table class="table table-hover table-striped" id="t1">
+            <thead>
+                <th>Sl.No</th>
+                <th>Employee Name</th>
+                <th>Status</th>
+                <th>Reports</th>
+            </thead>
+            <tbody id="tb"></tbody>
+            <tfoot>
+                <td colspan="3" class="text-right">
+                    <button class="btn btn-grd-primary" onclick="reportGenerate()">Generate Report</button>
+                </td>
+            </tfoot>
+        </table>
+        <h2 class="text-center text-danger" id="msg">No Attendance To Show</h2>
+    </div>
+
+    <div id="add_div">
+        <form action="/mate/employee/attendance/" method="post" id="form">
+            <input type="hidden" value="{{jm_id}}" name="jm_id" id="jm_id">
+            <table class="table table-hover table-striped" id="t2">
+                <thead>
+                    <th>Sl.No</th>
+                    <th>Employee Name</th>
+                    <th>Status</th>
+                </thead>
+                <tbody id="tb1"></tbody>
+                <tfoot>
+                    <td colspan="3" class="text-right">
+                        <button class="btn btn-grd-primary" type="submit">Submit</button>
+                    </td>
+                </tfoot>
+            </table>
+        </form>
+        <h2 class="text-center text-danger" id="msg1">No Employees To Show</h2>
+    </div>
+
+</div>
+
+<div id="report_table" hidden>
+    <div style="font-weight: bold;">Date : <span id="report_date"></span></div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <th>Sl.No</th>
+            <th>Employee Name</th>
+            <th>Status</th>
+        </thead>
+        <tbody id="tb2"></tbody>
+    </table>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+<script src="{{url_for('static',filename='assets/js/attendanceController.js')}}"></script>
+{% endblock %}

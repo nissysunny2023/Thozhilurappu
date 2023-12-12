@@ -1,0 +1,122 @@
+{% extends 'employee/menu.html' %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/pages/notification/notification.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/css/animate.css/css/animate.css')}}">
+
+<div class="card-block bg-light shadow">
+    <div class="row">
+        <div class="col-lg-12 col-xl-12">
+            <div class="row">
+                <div class="col sub-title">Details</div>
+                <div class="col text-right">
+                    <button class="btn btn-success" onclick="location.href='/mate/job/apply/{{data[0]}}/{{data[7]}}/'">Apply</button>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <ul class="nav nav-tabs  tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#job" role="tab">Job Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#mate" role="tab">Mate Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#land" role="tab">Land Details</a>
+                </li>
+            </ul>
+            <div class="tab-content tabs card-block">
+                <div class="tab-pane active" id="job" role="tabpanel">
+                    <h4 class="text-center">{{data[2]}}</h4>
+                    <p>
+                        {{data[3]}}
+                    </p>
+                    <div class="row form-group mt-5">
+                        <div class="col-md-2">Location</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[4]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Ward</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[2]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Employee Type</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">
+                            {% if data[6] == 1 %}
+                            All
+                            {% elif data[6] == 2 %}
+                            Below 60 and Without Fever or Health Problems
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Total Employees</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[7]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Start Date</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[1]}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="mate" role="tabpanel">
+                    <div class="row form-group">
+                        <div class="col-md-2">
+                            <img src="/static/uploads/profile_pic/{{data[11]}}" width="100%" alt="">
+                            <br><br>
+                            <h5 class="text-center">{{data[8]}}</h5>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Address</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[9]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Phone</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[10]}}</div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="land" role="tabpanel">
+                    <div class="row form-group">
+                        <div class="col-md-2">Owner Name</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[12]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Address</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[13]}}</div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2">Ward</div>
+                        <div class="col-md-1"> : </div>
+                        <div class="col">{{data[14]}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{url_for('static',filename='assets/js/bootstrap-growl.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static',filename='assets/pages/notification/notification.js')}}"></script>
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+{% with msg = get_flashed_messages() %}
+{% if msg %}
+<button class="btn btn-inverse waves-effect" hidden id="notif" data-type="inverse" data-from="top" data-align="center" data-msg="{{msg[0]}}" data-icon="fa fa-check">Inverse</button>
+<script>
+    $(function(){
+        $("#notif").trigger('click')
+    })
+</script>
+{% endif %}
+{% endwith %}
+{% endblock %}

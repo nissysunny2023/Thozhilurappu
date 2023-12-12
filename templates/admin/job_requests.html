@@ -1,0 +1,73 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/pages/notification/notification.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/css/animate.css/css/animate.css')}}">
+
+<div class="container">
+
+    <div class="row form-group">
+        <div class="col-md-4">
+            <select name="job" class="form-control" id="job">
+                {% if jobs %}
+                {% for j in jobs %}
+                <option value="{{j[0]}}">{{j[1]}}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+    </div>
+
+    {% if requests %}
+    <table class="table table-hover table-striped">
+        <thead>
+            <th>Sl.No</th>
+            <th>Job</th>
+            <th>Mate</th>
+            <th>Request Date</th>
+            <th>Response Date</th>
+            <th>Manage</th>
+        </thead>
+        <tbody id="tb">
+            {% for r in requests %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{r[5]}}</td>
+                <td>{{r[6]}}</td>
+                <td>{{r[2]}}</td>
+                <td>{{r[3]}}</td>
+                <td>
+                    {% if r[4] == 0 %}
+                    <button class="btn btn-sm btn-success" onclick="location.href='/admin/job/requests/manage/1/{{r[0]}}/'">Approve</button>
+                    <button class="btn btn-sm btn-danger" onclick="location.href='/admin/job/requests/manage/2/{{r[0]}}/'">Reject</button>
+                    {% elif r[4] == 1 %}
+                    <button class="btn btn-sm btn-primary" onclick="location.href='/admin/job/requests/details/{{r[0]}}/'">Details</button>
+                    {% elif r[4] == 3 %}
+                    <button class="btn btn-sm btn-primary" onclick="location.href='/admin/job/requests/payment/{{r[0]}}/'">Payment</button>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="text-center text-danger">Nothing To Show!!</h2>
+    {% endif %}
+</div>
+
+{% endblock  %}
+{% block scripts %}
+<script type="text/javascript" src="{{url_for('static',filename='assets/js/bootstrap-growl.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static',filename='assets/js/jobs.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static',filename='assets/pages/notification/notification.js')}}"></script>
+{% with msg = get_flashed_messages() %}
+{% if msg %}
+<button class="btn btn-inverse waves-effect" hidden id="notif" data-type="inverse" data-from="top" data-align="center" data-msg="{{msg[0]}}" data-icon="fa fa-check">Inverse</button>
+<script>
+    $(function(){
+        $("#notif").trigger('click')
+    })
+</script>
+{% endif %}
+{% endwith %}
+{% endblock %}

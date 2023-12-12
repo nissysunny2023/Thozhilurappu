@@ -1,0 +1,123 @@
+{% extends 'mate/menu.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/pages/notification/notification.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/css/animate.css/css/animate.css')}}">
+<div class="container" id="main_div">
+    {% if users %}
+    <table class="table table-hover table-striped">
+        <thead>
+            <th>User ID</th>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Apply</th>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <td>{{u[0]}}</td>
+                <td>{{u[1]}}</td>
+                <td>{{u[2]}}</td>
+                <td>{{u[3]}}</td>
+                <td>
+                    <button class="btn btn-sm btn-success btn-round" onclick="applyJob({{u[0]}})">Apply</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="text-center text-danger">Nothing To Show!!</h2>
+    {% endif %}
+</div>
+
+<div class="container-fluid" id="add_div">
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Authentication card start -->
+            <div class="signup-card card-block auth-body mr-auto ml-auto">
+                <form class="md-float-material" method="post" action="" id="form">
+                    <input type="hidden" name="land" id="land">
+                    <div class="text-center">
+                        <img src="{{url_for('static',filename='assets/images/auth/logo-dark.png')}}" alt="logo.png">
+                    </div>
+                    <div class="auth-box">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" onclick="showHide()" class="btn btn-mini btn-danger">x</button>
+                            </div>
+                        </div>
+                        <div class="row m-b-20">
+                            <div class="col-md-12">
+                                <h3 class="text-center txt-primary">Apply Job</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Employee Type : <span id="e_type"></span>
+                            </div>
+                            <div class="col-md-12">
+                                Employee Number : <span id="e_no"></span>
+                            </div>
+                        </div>
+                        <hr/>
+                        <label for="date">Start Date</label>
+                        <div class="input-group">
+                            <input type="date" name="date" class="form-control" min="" required id="current_date">
+                            <span class="md-line"></span>
+                        </div>
+                        <label for="payment">Payment Amount</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="Payment Amount" required name="payment">
+                            <span class="md-line"></span>
+                        </div>
+                        <label for="edate">End Date</label>
+                        <div class="input-group">
+                            <input type="date" name="edate" class="form-control" min="" required id="current_date">
+                            <span class="md-line"></span>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Apply</button>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
+                                <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{{url_for('static',filename='assets/images/auth/Logo-small-bottom.png')}}" alt="small-logo.png">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- end of form -->
+            </div>
+            <!-- Authentication card end -->
+        </div>
+        <!-- end of col-sm-12 -->
+    </div>
+    <!-- end of row -->
+</div>
+
+
+{% endblock  %}
+{% block scripts %}
+<script type="text/javascript" src="{{url_for('static',filename='assets/js/bootstrap-growl.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static',filename='assets/pages/notification/notification.js')}}"></script>
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+<script src="{{url_for('static',filename='assets/js/showHide.js')}}"></script>
+<script src="{{url_for('static',filename='assets/js/applyJob.js')}}"></script>
+{% with msg = get_flashed_messages() %}
+{% if msg %}
+<button class="btn btn-inverse waves-effect" hidden id="notif" data-type="inverse" data-from="top" data-align="center" data-msg="{{msg[0]}}" data-icon="fa fa-check">Inverse</button>
+<script>
+    $(function(){
+        $("#notif").trigger('click')
+    })
+</script>
+{% endif %}
+{% endwith %}
+{% endblock %}

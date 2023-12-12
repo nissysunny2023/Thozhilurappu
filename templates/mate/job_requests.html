@@ -1,0 +1,48 @@
+{% extends 'mate/menu.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/pages/notification/notification.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='assets/css/animate.css/css/animate.css')}}">
+<div class="container" id="main_div">
+    {% if jobs %}
+    <table class="table table-hover table-striped">
+        <thead>
+            <th>Sl.No</th>
+            <th>Job Title</th>
+            <th>Request Date</th>
+            <th>Response Date</th>
+            <th>Start Date</th>
+            <th>Payment</th>
+            {% if t == 'pending' %}
+            <th>Cancel</th>
+            {% elif t == 'approved' %}
+            <th>Details</th>
+            {% endif %}
+        </thead>
+        <tbody>
+            {% for j in jobs %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{j[5]}}</td>
+                <td>{{j[1]}}</td>
+                <td>{{j[2]}}</td>
+                <td>{{j[3]}}</td>
+                <td>{{j[4]}}</td>
+                <td>
+                {% if t == 'pending' %}
+                <button class="btn btn-sm btn-danger" onclick="location.href='/mate/job/cancel/{{j[0]}}/'">Cancel</button>
+                {% elif t == 'approved' %}
+                <button class="btn btn-sm btn-primary" onclick="location.href='/mate/job/details/{{j[0]}}/'">Details</button>
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="text-center text-danger">Nothing To Show!!</h2>
+    {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'mate/menu.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-sm-2">
+            <img src="/static/uploads/profile_pic/{{data[6]}}" width="100%" style="max-height: 200px;" alt="profile picture">
+        </div>
+        <div class="col-sm-7 mt-5">
+            <h2 class="text-center">{{data[1]}}</h2>
+        </div>
+        <div class="col-sm-3">
+            {% if data[9] == 0 %}
+            <button class="btn btn-grd-success form-control" onclick="location.href='/mate/employee/request/manage/{{data[10]}}/1/'">Accept</button>
+            <button class="btn btn-grd-danger form-control" onclick="location.href='/mate/employee/request/manage/{{data[10]}}/2/'">Reject</button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Address
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[2]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Gender
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[4]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Date Of Birth
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[5]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Phone
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[3]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Email
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[8]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            ID Proof
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">
+            <button class="btn btn-mini btn-primary" onclick="window.open('/static/uploads/id_proof/{{data[7]}}','_blank')">View</button>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}
+{% block scripts %}
+<script type="text/javascript" src="{{url_for('static',filename='assets/js/bootstrap-growl.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static',filename='assets/pages/notification/notification.js')}}"></script>
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+{% with msg = get_flashed_messages() %}
+{% if msg %}
+<button class="btn btn-inverse waves-effect" hidden id="notif" data-type="inverse" data-from="top" data-align="center" data-msg="{{msg[0]}}" data-icon="fa fa-check">Inverse</button>
+<script>
+    $(function(){
+        $("#notif").trigger('click')
+    })
+</script>
+{% endif %}
+{% endwith %}
+{% endblock %}

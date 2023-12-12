@@ -1,0 +1,65 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-sm-2">
+            <img src="/static/uploads/profile_pic/{{data[17]}}" width="100%" style="max-height: 200px;" alt="profile picture">
+        </div>
+        <div class="col-sm-7 mt-5">
+            <h2 class="text-center">{{data[12]}}</h2>
+        </div>
+        <div class="col-sm-3">
+            {% if data[6] == 0 %}
+            <button class="btn btn-grd-success form-control" onclick="location.href='/admin/managelandowner/{{data[0]}}/1/'">Approve</button>
+            <button class="btn btn-grd-danger form-control" onclick="location.href='/admin/managelandowner/{{data[0]}}/2/'">Reject</button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Address
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[13]}}, {{data[15]}}, {{data[14]}}, {{data[16]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Gender
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[18]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            DOB
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[19]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Phone
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[17]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Email
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">{{data[8]}}</div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-1">
+            Property Papers
+        </div>
+        <div class="col-sm-1"> : </div>
+        <div class="col">
+            <button class="btn btn-mini btn-primary" onclick="window.open('/static/uploads/land/{{data[5]}}','_blank')">View</button>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

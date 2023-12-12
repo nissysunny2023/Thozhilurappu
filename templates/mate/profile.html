@@ -1,0 +1,74 @@
+{% extends 'mate/menu.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <img src="/static/uploads/profile_pic/{{data[6]}}" width="100%" alt="profile image">
+            <div class="text-right">
+                <button class="btn btn-inverse btn-sm" onclick="showHide()"><i class="ti-pencil"></i>Change</button>
+            </div>
+            <form action="/profilepic/change/" method="post" enctype="multipart/form-data" id="form">
+                <div class="row" id="add_div">
+                    <div class="col-sm-9">
+                        <input type="file" name="file" id="file" class="form-control" required>
+                    </div>
+                    <div class="col text-right">
+                        <button type="submit" class="btn btn-sm btn-success">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-8">
+            <form action="" method="post" id="form">
+                <div class="row form-group">
+                    <div class="col">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control inp" required readonly
+                            value="{{data[1]}}">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col">
+                        <label for="address">Address</label>
+                        <textarea name="address" id="address" class="form-control inp" required
+                            readonly>{{data[2]}}</textarea>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col">
+                        <label for="phone">Phone</label>
+                        <input type="text" name="phone" id="phone" required class="form-control inp" readonly
+                            value="{{data[3]}}" pattern="[0-9]{10}">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required class="form-control inp" readonly
+                            value="{{data[9]}}">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col">
+                        <button type="button" id="edit_btn" onclick="editProfile()" class="btn btn-sm btn-dark"><i
+                                class="ti-pencil"></i>Edit</button>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col text-right">
+                        <button type="button" id="can_btn" onclick="cancelEdit()"
+                            class="btn btn-sm btn-danger">Cancel</button>
+                        <button type="submit" id="upd_btn" class="btn btn-sm btn-success">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+<script src="{{url_for('static',filename='assets/js/showHide.js')}}"></script>
+{% endblock %}

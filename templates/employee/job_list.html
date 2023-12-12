@@ -1,0 +1,36 @@
+{% extends 'employee/menu.html' %}
+{% block content %}
+
+{% if jobs %}
+<div class="page-body">
+    <div class="row">
+        {% for j in jobs %}
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{j[4]}}</h5>
+                    <span>Ward : {{j[5]}}</span>
+                    <span>Total Employees : {{j[3]}}</span>
+                </div>
+                <h3 class="text-center">{{j[1]}}</h3>
+                <div class="card-block">
+                    <p>
+                        {{j[2]}}
+                    </p>
+                </div>
+                <div class="text-right p-2">
+                    <button class="btn btn-primary btn-sm"
+                        onclick="location.href='/employee/job/details/{{j[0]}}/'">Details</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<h2 class="text-danger text-center">No Jobs To Show</h2>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/userMenu.js')}}"></script>
+{% endblock %}

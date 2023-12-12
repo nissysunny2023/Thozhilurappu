@@ -1,0 +1,223 @@
+{% extends 'admin/menu.html' %}
+{% block content %}
+
+<div id="main_div">
+    <div class="page-header card">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="icofont icofont icofont icofont-plus bg-c-green" onclick="showHide()"></i>
+                    <div class="d-inline">
+                        <h4>Notifications</h4>
+                        <span>WELCOMEEE.......</span>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+
+    <div class="page-body">
+        <div class="row">
+
+            {% for n in notifications1 %}
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>{{n[2]}} (Meeting)
+                        </h5>
+                        <span>{{n[4]}}</span>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option" style="width: 35px;">
+                                <li class=""><i class="icofont icofont-simple-left"></i></li>
+                                <li><i class="icofont icofont-maximize full-card"></i></li>
+                                <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                <li><i class="icofont icofont-error close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <p>
+                            {{n[3]}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for n in notifications %}
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>{{n[1]}} (
+                            {% if n[4] == 0 %}
+                            All
+                            {% else %}
+                            Mate
+                            {% endif %}
+                            )
+                        </h5>
+                        <span>{{n[3]}}</span>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option" style="width: 35px;">
+                                <li class=""><i class="icofont icofont-simple-left"></i></li>
+                                <li><i class="icofont icofont-maximize full-card"></i></li>
+                                <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                <li><i class="icofont icofont-error close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <p>
+                            {{n[2]}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="add_div">
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- Authentication card start -->
+            <div class="signup-card card-block auth-body mr-auto ml-auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary" id="gen_btn" onclick="genBtn()">General</button>
+                        <button type="button" class="btn btn-secondary" id="met_btn" onclick="metBtn()">Meeting</button>
+                    </div>
+                </div>
+                <form class="md-float-material gen_not_form" method="post" action="" id="form">
+                    <input type="hidden" name="n_type" value="gen">
+                    <div class="text-center">
+                        <img src="{{url_for('static',filename='assets/images/auth/logo-dark.png')}}" alt="logo.png">
+                    </div>
+                    <div class="auth-box">
+                        <div class="row m-b-20">
+                            <div class="col-md-12">
+                                <h3 class="text-center txt-primary">Add Notification</h3>
+                            </div>
+                        </div>
+                        <hr />
+                        <label for="title">Title</label>
+                        <div class="input-group">
+                            <input type="text" name="title" class="form-control" required placeholder="Title">
+                            <span class="md-line"></span>
+                        </div>
+                        <label for="description">Description</label>
+                        <div class="input-group">
+                            <textarea name="description" cols="30" rows="5" required placeholder="Description"
+                                class="form-control"></textarea>
+                            <span class="md-line"></span>
+                        </div>
+                        <label for="type">Shown To</label>
+                        <div class="input-group">
+                            <select name="type" id="type" required class="form-control">
+                                <option value="0">All</option>
+                                <option value="1">Mates</option>
+                            </select>
+                            <span class="md-line"></span>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <button type="submit"
+                                    class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Add
+                                    Notification</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-10">
+                                <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
+                                <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{{url_for('static',filename='assets/images/auth/Logo-small-bottom.png')}}"
+                                    alt="small-logo.png">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <form class="md-float-material met_not_form" method="post" action="" id="form">
+                    <input type="hidden" name="n_type" value="met">
+                    <div class="text-center">
+                        <img src="{{url_for('static',filename='assets/images/auth/logo-dark.png')}}" alt="logo.png">
+                    </div>
+                    <div class="auth-box">
+                        <div class="row m-b-20">
+                            <div class="col-md-12">
+                                <h3 class="text-center txt-primary">Add Notification</h3>
+                            </div>
+                        </div>
+                        <hr />
+                        <label for="title">Select Job</label>
+                        <div class="input-group">
+                            <select name="job" class="form-control" required id="job">
+                                <option value="" selected disabled>Select Job</option>
+                                {% if jobs %}
+                                {% for j in jobs %}
+                                <option value="{{j[0]}}">{{j[1]}}</option>
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                            <span class="md-line"></span>
+                        </div>
+                        <label for="title">Select Mate</label>
+                        <div class="input-group">
+                            <select name="mate" class="form-control" required id="mate">
+                                <option value="" disabled selected >Select Mate</option>
+                            </select>
+                            <span class="md-line"></span>
+                        </div>
+                        <label for="title">Title</label>
+                        <div class="input-group">
+                            <input type="text" name="title" class="form-control" required placeholder="Title">
+                            <span class="md-line"></span>
+                        </div>
+                        <label for="description">Description</label>
+                        <div class="input-group">
+                            <textarea name="description" cols="30" rows="5" required placeholder="Description"
+                                class="form-control"></textarea>
+                            <span class="md-line"></span>
+                        </div>
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <button type="submit"
+                                    class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Add
+                                    Notification</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-10">
+                                <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
+                                <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{{url_for('static',filename='assets/images/auth/Logo-small-bottom.png')}}"
+                                    alt="small-logo.png">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- end of form -->
+            </div>
+            <!-- Authentication card end -->
+        </div>
+        <!-- end of col-sm-12 -->
+    </div>
+    <!-- end of row -->
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='assets/js/showHide.js')}}"></script>
+<script src="{{url_for('static',filename='assets/js/adminHomeController.js')}}"></script>
+{% endblock %}
